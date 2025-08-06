@@ -1,18 +1,1 @@
 RewriteEngine On
-
-# 🚫 Запрет индексации поисковыми системами (везде)
-<IfModule mod_headers.c>
-  Header set X-Robots-Tag "noindex, nofollow"
-</IfModule>
-
-# 🔁 Разрешаем доступ к админке (не редиректим)
-RewriteCond %{REQUEST_URI} ^/wp-admin [NC]
-RewriteRule ^ - [L]
-
-RewriteCond %{REQUEST_URI} ^/wp-login\.php$ [NC]
-RewriteRule ^ - [L]
-
-# 🔁 Редирект всего остального на https://casinovodka.fun
-RewriteCond %{HTTPS} off [OR]
-RewriteCond %{HTTP_HOST} !^casinovodka\.fun$ [NC]
-RewriteRule ^(.*)$ https://casinovodka.fun/$1 [R=301,L]
